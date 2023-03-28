@@ -21,42 +21,33 @@
 
                 </tr>
             </thead>
-            <tbody id="data-table-user">
-
+            <tbody id="users-row" class="text-sm font-thin">
+                <!-- isi data -->
             </tbody>
         </table>
-
-
-    </div>
-
-    </div>
     </div>
     <script>
+        const usersRow = document.getElementById('users-row');
 
-        const tabledata = document.getElementById('data-table-user');
-
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(response => response.json())
-            .then(data => {
+        const endpoint = 'https://jsonplaceholder.typicode.com/users';
+        fetch(endpoint)
+            .then((response) => response.json())
+            .then((users) => {
                 let html = '';
-                let i = 1;
-                data.forEach(data => {
+                let i = 0;
+                users.forEach((user) => {
                     html += `
-                        <tr>
-                            <td>${i++}</td>
-                            <td>${user.name}</td>
-                            
-                        </tr>
+                                <tr>
+                                    <td class="text-center">${i++}</td>
+                                    
+                                       
+                                </tr>
+                            `;
 
-                        `;
-                    tabledata.innerHTML = html;
+                    usersRow.innerHTML = html;
                 });
             })
-            .catch(error => console.error(error));
-
-
-
-
+            .catch((error) => console.log(error));
     </script>
 </body>
 
